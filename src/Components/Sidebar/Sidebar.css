@@ -65,7 +65,7 @@
 
 
 @media (max-width: 900px) {
-  .side-bar {
+  .sidebar {
     display: none;
   }
 }

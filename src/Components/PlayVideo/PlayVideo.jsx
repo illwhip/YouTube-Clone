@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import './PlayVideo.css'
-import video1 from '../../assets/video.mp4'
 import like from '../../assets/like.png'
 import dislike from '../../assets/dislike.png'
 import share from '../../assets/share.png'
 import save from '../../assets/save.png'
-import jack from '../../assets/jack.png'
-import user_profile from '../../assets/user_profile.jpg'
 import API_KEY, { value_contverter } from '../../data'
 import moment from 'moment'
 import { useParams } from "react-router-dom"
-
 
 const PlayVideo = () => {
 
@@ -47,7 +43,7 @@ const PlayVideo = () => {
   return (
     <div className='play-video'>
       {/* <video src={video1} controls autoPlay muted> </video> */}
-      <iframe src={`https://www.youtube.com/embed/${videoId}autoplay=1`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <iframe src={`https://www.youtube.com/embed/${videoId}autoplay=1`} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
       <h3>{apiData ? apiData.snippet.title : "Title Here"}</h3>
       <div className="play-video-info">
         <p>{apiData ? value_contverter(apiData.statistics.viewCount) : "16K"} Views &bull; {apiData ? moment(apiData.snippet.publishedAt).fromNow() : ""}</p>
@@ -60,7 +56,7 @@ const PlayVideo = () => {
       </div>
       <hr />
       <div className="publisher">
-        <img src={channelData ? channelData.snippet.thumbnail.default.url : ""} alt="" />
+        <img src={channelData ? channelData.snippet.thumbnail.default.url : null} alt="" />
         <div>
           <p>{apiData ? apiData.snippet.channelTitle : ""}</p>
           <span>{channelData ? value_contverter(channelData.statistics.subscriberCount) : "1M"} Subscribers</span>
