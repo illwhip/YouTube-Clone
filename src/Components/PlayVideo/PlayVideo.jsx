@@ -40,6 +40,9 @@ const PlayVideo = () => {
     fetchOtherData()
   }, [apiData])
 
+  if (!apiData) return (<div>Loading...</div>)
+
+  else {
   return (
     <div className='play-video'>
       {/* <video src={video1} controls autoPlay muted> </video> */}
@@ -87,7 +90,7 @@ const PlayVideo = () => {
         
       </div>
     </div>
-  ) 
+  )} 
 }
 
 export default PlayVideo
