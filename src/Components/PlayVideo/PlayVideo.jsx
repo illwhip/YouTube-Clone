@@ -28,7 +28,7 @@ const PlayVideo = () => {
     await fetch(channelData_url).then(res => res.json()).then(data => setChannelData(data.items[0]))
 
     // Fetching Comment Data
-    const comment_url =`https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=50&videoId=${videoId}=${API_KEY}`
+    const comment_url =`https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&videoId=${videoId}&key=${API_KEY}`
     await fetch(comment_url).then(res => res.json()).then(data => setCommentData(data.items))
   }
 
@@ -37,12 +37,11 @@ const PlayVideo = () => {
   }, [videoId])
 
   useEffect(() => {
-    fetchOtherData()
+    if (apiData) {
+      fetchOtherData()
+    }
   }, [apiData])
 
-  if (!apiData) return (<div>Loading...</div>)
-
-  else {
   return (
     <div className='play-video'>
       {/* <video src={video1} controls autoPlay muted> </video> */}
@@ -59,7 +58,7 @@ const PlayVideo = () => {
       </div>
       <hr />
       <div className="publisher">
-        <img src={channelData ? channelData.snippet.thumbnail.default.url : null} alt="" />
+        <img src={channelData ? channelData.snippet.thumbnails.default.url : null} alt="" />
         <div>
           <p>{apiData ? apiData.snippet.channelTitle : ""}</p>
           <span>{channelData ? value_contverter(channelData.statistics.subscriberCount) : "1M"} Subscribers</span>
@@ -90,7 +89,7 @@ const PlayVideo = () => {
         
       </div>
     </div>
-  )} 
+  )
 }
 
 export default PlayVideo
